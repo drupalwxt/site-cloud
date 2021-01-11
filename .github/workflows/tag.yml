@@ -1,0 +1,55 @@
+name: tag
+on:
+  push:
+    tags:
+    - '*'
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  COMPOSER_MEMORY_LIMIT: -1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Export github reference var
+      run: echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
+
+    - uses: statcan/actions/composer@master
+      with:
+        args: install --prefer-dist --no-interaction
+
+    - name: Build out the Drupal infrastructure
+      run: |
+        git clone --branch 9.x-postgres https://github.com/drupalwxt/docker-scaffold.git docker
+        patch -p1 < docker/patches/custom-mounts.patch
+        make build
+        docker-compose -f docker-compose-ci.yml up -d
+        docker ps -a
+        sleep 10
+
+    - name: Run installation and tests
+      run: |
+        make drupal_install
+        make drupal_migrate
+        # Change ownership on html/core to allow files to be copied (see drupal_cs in Makefile)
+        sudo chown -R $(id -u) html/core
+        make test
+
+    # Connect to Container registry
+    - name: Login to GitHub Packages Docker Registry
+      uses: docker/login-action@v1
+      with:
+        registry: docker.pkg.github.com
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    # Push to Container registry
+    - name: Push to GitHub Packages Docker Registry
+      run: |
+        docker tag site-tc-internet_web:latest docker.pkg.github.com/drupalwxt/site-cloud/site-cloud:${{ env.GITHUB_REFERENCE }}
+        docker tag site-tc-internet_nginx:latest docker.pkg.github.com/drupalwxt/site-cloud/site-cloud-nginx:${{ env.GITHUB_REFERENCE }}
+        docker push docker.pkg.github.com/drupalwxt/site-cloud/site-cloud:${{ env.GITHUB_REFERENCE }}
+        docker push docker.pkg.github.com/drupalwxt/site-cloud/site-cloud-nginx:${{ env.GITHUB_REFERENCE }}

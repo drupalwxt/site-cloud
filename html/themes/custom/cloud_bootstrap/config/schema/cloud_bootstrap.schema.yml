@@ -1,0 +1,12 @@
+# Schema for the theme setting configuration file of the cloud_bootstrap theme.
+
+cloud_bootstrap.settings:
+  type: theme_settings
+  label: 'Cloud Bootstrap settings'
+  mapping:
+    cdn_provider:
+      type: string
+      label: 'CDN Provider'
+    breadcrumb_home:
+      type: integer
+      label: 'Breadcrumb Home'
