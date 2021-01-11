@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Contains cloud_ext_azure_ad.module
+ */
+
+/**
+ * Implements hook_form_alter().
+ */
+function cloud_ext_azure_ad_form_user_login_form_alter(&$form, &$form_state, $form_id) {
+  $form['#access'] = FALSE;
+  $form['#markup'] = '';
+}

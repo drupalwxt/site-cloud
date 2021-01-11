@@ -1,0 +1,52 @@
+id: cloud_node_page
+label: Embedded data feed of content
+migration_group: cloud
+migration_tags:
+  - Core
+source:
+  plugin: embedded_data
+  data_rows:
+    - name: 'cloud_request_elastic'
+      title: 'Request an Elastic Instance'
+      language: 'en'
+      body: |
+        <p>Request an Elastic Instance.</p>
+    - name: 'cloud_request_mlflow'
+      title: 'Request an MLFlow Instance'
+      language: 'en'
+      body: |
+        <p>Request an MLFlow Instance.</p>
+    - name: 'cloud_request_minio'
+      title: 'Request an MinIO Instance'
+      language: 'en'
+      body: |
+        <p>Request an MinIO Instance.</p>
+  # Under 'ids', we identify source fields populated above which will uniquely
+  # identify each imported item. The 'type' makes sure the migration map table
+  # uses the proper schema type for stored the IDs.
+  ids:
+    name:
+      type: string
+process:
+  id: name
+  title: title
+  uid:
+    plugin: default_value
+    default_value: 1
+  type:
+    plugin: default_value
+    default_value: page
+  sticky:
+    plugin: default_value
+    default_value: 0
+  'body/value': body
+  'body/format':
+    plugin: default_value
+    default_value: rich_text
+  langcode: language
+  'moderation_state/target_id':
+    plugin: default_value
+    default_value: published
+destination:
+  plugin: entity:node
+migration_dependencies: {}

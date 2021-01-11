@@ -1,0 +1,7 @@
+name: 'OpenID Connect - Azure AD'
+type: module
+description: Azure AD OpenID Connect Authentication Client
+core_version_requirement: ^8 || ^9
+package: Authentication
+dependencies:
+  - openid_connect:openid_connect

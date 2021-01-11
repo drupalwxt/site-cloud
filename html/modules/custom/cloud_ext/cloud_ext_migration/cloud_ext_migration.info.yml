@@ -1,0 +1,9 @@
+name: 'Cloud Extend Migrate'
+description: 'Registers migration plugins and provides content.'
+type: module
+core_version_requirement: '^8.8 || ^9'
+package: WxT
+
+# Required modules
+dependencies:
+  - wxt_ext_migrate:wxt_ext_migrate

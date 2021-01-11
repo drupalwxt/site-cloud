@@ -1,0 +1,9 @@
+name: 'Cloud Extend Webform'
+description: 'Provides functionality for storing, retrieving, and tabulating webforms.'
+type: module
+core_version_requirement: '^8.8 || ^9'
+package: Cloud
+
+# Required modules
+dependencies:
+  - wxt_ext_webform:wxt_ext_webform

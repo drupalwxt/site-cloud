@@ -1,0 +1,11 @@
+name: 'Cloud Extend'
+description: 'Wrapper module for enabling all of the Cloud Extensions.'
+type: module
+core_version_requirement: '^8.8 || ^9'
+package: Cloud
+
+# Required modules
+dependencies:
+  - cloud_ext_azure_ad:cloud_ext_azure_ad
+  - cloud_ext_migration:cloud_ext_migration
+  - cloud_ext_webform:cloud_ext_webform
