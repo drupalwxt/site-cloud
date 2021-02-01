@@ -8,7 +8,7 @@
     "require": {
         "cweagans/composer-patches": "^1.6.0",
         "drupal/core-composer-scaffold": "*",
-        "drupalwxt/wxt": "4.0.x-dev",
+        "drupalwxt/wxt": "4.0.1",
         "drush/drush": ">=9.7",
         "oomphinc/composer-installers-extender": "^1.1 || ^2",
         "drupal/openid_connect": "1.0",
@@ -82,10 +82,6 @@
         },
         "patches": {
             "drupal/core": {
-                "26552 - Allow users with access to unpublished nodes to create unpublished books ":
-                "https://www.drupal.org/files/issues/2020-09-02/26552-178.patch",
-                "2470896 - Make Book navigation translatable":
-                "https://www.drupal.org/files/issues/2020-12-02/2470896_223.patch",
                 "2652000 Views do not add the active class anymore":
                 "https://www.drupal.org/files/issues/2020-01-09/2652000-84.patch",
                 "2885278 - Node local tasks tabs do not appear on node revisions":
@@ -105,15 +101,7 @@
                 "2972308 - Allow users to translate content they can edit":
                 "https://www.drupal.org/files/issues/2019-12-03/allow-users-to-translate-editable-content-2972308-41.patch",
                 "2988018 - Performance issues with path alias generated queries on PostgreSQL":
-                "https://www.drupal.org/files/issues/2020-12-08/2988018-by-xurizaemon-rob.barnett-bzrudi71-RoS.patch",
-                "3020298 - Book navigation block does not appear on unpublished book outline pages":
-                "https://www.drupal.org/files/issues/2020-02-21/3020298-11.patch",
-                "3117782 - Book title in breadcrumb not translated":
-                "https://www.drupal.org/files/issues/2020-10-20/book-breadcrumb_title_xlate-3177182-3.patch",
-                "3173808 - Allow different content-types for child book pages":
-                "https://www.drupal.org/files/issues/2020-12-08/3173808-2-Make-book-child-content-type-configura.patch",
-                "3187269 - make book nav titles translatable":
-                "https://www.drupal.org/files/issues/2020-12-08/book-nav_link-titles.patch"
+                "https://www.drupal.org/files/issues/2020-12-08/2988018-by-xurizaemon-rob.barnett-bzrudi71-RoS.patch"
             },
             "drupal/diff": {
                 "3004705 - The getModerationState() function fails to take translations into consideration":
@@ -140,10 +128,6 @@
                 "https://www.drupal.org/files/issues/2020-04-23/3109178-14.patch",
                 "Undefined offset error":
                 "https://www.drupal.org/files/issues/2020-08-24/undefined-offset-error-3065045-13.patch"
-            },
-            "drupal/linkit": {
-                "2895153 - Linkit filter should honour the URL query and fragment":
-                "https://www.drupal.org/files/issues/2020-01-28/linkit_substitution_query_fragment-2895153-11.patch"
             },
             "drupal/pathauto": {
                 "2973478 - Aliases are not created for affected translations":
